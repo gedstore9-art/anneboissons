@@ -1,3 +1,5 @@
+import { getSupabase } from './supabase';
+
 export interface Product {
   id: string;
   name: string;
@@ -66,3 +68,16 @@ export const INITIAL_PRODUCTS: Product[] = [
     is_alcoholic: false
   }
 ];
+
+export async function getProducts(): Promise<Product[]> {
+  try {
+    const supabase = getSupabase();
+    const { data, error } = await supabase.from('boissons').select('*');
+    if (error || !data || data.length === 0) {
+      return INITIAL_PRODUCTS;
+    }
+    return data as Product[];
+  } catch {
+    return INITIAL_PRODUCTS;
+  }
+}
