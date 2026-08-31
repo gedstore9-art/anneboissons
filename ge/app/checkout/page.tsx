@@ -1,7 +1,7 @@
 // app/checkout/page.tsx
 'use client';
 import React, { useState, useEffect } from 'react';
-import { useStore } from '@/magasin/useStore';
+import { useStore } from '@/store/useStore';
 import { useRouter } from 'next/navigation';
 
 interface DeliveryZone {
